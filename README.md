@@ -1,4 +1,4 @@
-# Generating_a_BH_Merging_Catalogue
+# Generating-a-BH-Merging-Catalogue
 **Paolo Marcoccia<sup>1</sup>**
 
 <sub>1. University of Stavanger, Institutt for Matematikk og Fysikk, Kjølv Egelands hus, 5.etg, E-blokk, 4021 Stavanger, Norway </sub> 
