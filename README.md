@@ -4,4 +4,4 @@
 <sub>1. University of Stavanger, Institutt for Matematikk og Fysikk, Kjølv Egelands hus, 5.etg, E-blokk, 4021 Stavanger, Norway </sub> 
 ## Introduction ##
 
-Ipyhon notebook used to simulate a number of BH merging events in function of the considered volume and observation time
+The main purpose of this ipython notebook, is to generate a catalogue of _Binary Black Hole Merging events_ inside a given volume of space and detectable time.
