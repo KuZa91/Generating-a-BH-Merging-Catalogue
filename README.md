@@ -42,5 +42,8 @@ Three different modalities were implemented to test out the notebook :
 
 The random seed during the simulation may be choosen in order to have reproducible results, furthermore at the end of the notebook many plots will be shown for observing the properties of the generated dataframe !
 
+## Additional Material ##
 
+This notebook, doesn't require any additional material except the one already present in a standard _Anaconda_ installation.
+The _Anaconda 3_ distribution may be downloaded for free at the following [link](https://www.anaconda.com/products/individual)
 
