@@ -27,6 +27,20 @@ This equation however in order to be properly solved require to span over lot of
 - The _spin tilts angles_ of the 2 events;
 
 To increase the computational speed, the function <code>Bin_and_Gen</code> was parallelized over the first cycle, resulting in a performance increase up to the setted _mass precision_ for a computer with said number of cores.
-Furthermore, the simmetry of the _spin amplitudes_ and _spin tilts angles_ distribution were used to span over only half of the elements that needed to be considered.
+Furthermore, the simmetry of the _spin amplitudes_ and _spin tilts angles_ distributions were used to span over only half of the elements that needed to be considered.
 This may be done as long as the number of generated events outside the diagonal are multiplied by 2, and a parameter flip among the 2 values is introduced.
-For each of the considered bin, the function _Gen_Events_Parameters
+For each of the considered bin, the function <code>Gen_Events_Parameters</code> generated a number of events equal to the number predicted in the considered bin, and saved that (if inside the detector frequency sensitivity) in a partial list where all the non-uniform parameters were saved.
+All the missing parameters, were added to the final dataframe later by using vectorized operation in order to increase computational speed.
+The partial list, moreover, by being quite heavy could be saved to the final dataframe in multiple steps of a fixed percentage in order to avoid ram duplication problem caused by the function <code>pd.concat</code>.
+Three different modalities were implemented to test out the notebook :
+
+- The _standard mode_ will only saves certain events in each bin, and will be usefull to understimate the real number of events ;
+
+- The _fast montecarlo mode_ will generate in each bin the certain number, and will flip a random number between 0 and 1 for the residual value of the bin, if the random number will be smaller of equal than the residual value of the bin, a new event will be added to the dataframe (this is the most reliable mode) ;
+
+- The _mode ex_ will randomly add a value between 0 and 0.49 to each of the considered bin, if the bin residual value will be bigger than 0.5 then an events would be generated, this allows for low probability bins to appear easy on the dataframe and tend to overstimate the final result !
+
+The random seed during the simulation may be choosen in order to have reproducible results, furthermore at the end of the notebook many plots will be shown for observing the properties of the generated dataframe !
+
+
+
