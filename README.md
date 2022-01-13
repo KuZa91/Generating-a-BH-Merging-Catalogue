@@ -5,7 +5,7 @@
 ## Introduction ##
 
 The main purpose of this ipython notebook, is to generate a catalogue of _Stellar Origin Binary Black Hole Merging events_ (_SOBBHm_) inside a given volume of space and detectable time.
-In order to do so, I'll use equation **1)** and **2)** of the paper of [A. Sesana](https://arxiv.org/abs/1602.06951), in the same form described in the paper by [LIGO and Virgo Scientific Collaboration](https://arxiv.org/abs/1811.12940).
+In order to do so, I'll use equation **1)** and **2)** of the paper of [A. Sesana](https://arxiv.org/abs/1602.06951), in the same form described in the paper by [LIGO and Virgo Scientific Collaboration](https://arxiv.org/abs/2111.03634)(https://arxiv.org/abs/2010.14533)(https://arxiv.org/abs/1811.12940).
 The previous article infer the properties of the parameters distribution for the _SOBBHm_ population detected by the _LIGO and VIRGO Collaboration_, in order to predict a reliable distribution for the future detected events, and in particular, the inference was done adopting 3 different distribution for the mass.
 I decided to adopt the _Model B_ distribution given by equation **2)** for the mass in this notebook, as it allows the distribution to consider the effects of proportionality among the 2 masses without getting as complicated as the _Model C_.
 For what concerns _spin amplitudes_ and _spin tilts angles_, equations **4)** and **6)** were used respectively, while all the others parameters generated will be assumed uniform in their value range.
