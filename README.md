@@ -35,19 +35,18 @@ To increase the computational speed, the function <code>Bin_and_Gen</code> was p
 Furthermore, the simmetry of the _spin amplitudes_ and _spin tilts angles_ distributions were used to implement an _Inverse cumulative distribution function(ICDF)_ for the latters and generate them a posteriori without having to span over the phase space.
 For each of the considered bin, the function <code>Gen_Events_Parameters</code> generated a number of events equal to the number predicted in the considered bin, this number can be interpreted in several different ways by activating the corrispective flag for the mode. We have the following modes available for the run :
 
-- _Default mode_ :
+- _Default mode_ : the number of events generated would be just the predicted number of events rounded up (e.g 18.7 ~ 19, 0.4 ~0.);
 
-All the missing parameters, were added to the final dataframe later by using vectorized operation in order to increase computational speed.
-The partial list, moreover, by being quite heavy could be saved to the final dataframe in multiple steps of a fixed percentage in order to avoid ram duplication problem caused by the function <code>pd.concat</code>.
-Three different modalities were implemented to test out the notebook :
+- _Mode Ex_ : allows the generation of exotic events with non-zero probability by summing a random number between 0 and 0.5 before rounding up as in _Default mode_;
 
-- The _standard mode_ will only saves certain events in each bin, and will be usefull to understimate the real number of events ;
+- _Mode FastMc_ : The decimal part of the predicted number of events would be treated in a Monte Carlo approach by generating a random number between 0 and 1, only if the generated number will be smaller or equal than the decimal part the latter would be rounded up to 1;
 
-- The _fast montecarlo mode_ will generate in each bin the certain number, and will flip a random number between 0 and 1 for the residual value of the bin, if the random number will be smaller of equal than the residual value of the bin, a new event will be added to the dataframe (this is the most reliable mode) ;
+- _Mode Poisson_ : The predicted number of events would be used as the parameter describing a Poissonian distribution and the effective number of generated events per bin would be obtained by reverse-sampling the latter. 
 
-- The _mode ex_ will randomly add a value between 0 and 0.49 to each of the considered bin, if the bin residual value will be bigger than 0.5 then an events would be generated, this allows for low probability bins to appear easy on the dataframe and tend to overstimate the final result !
+All the uniform parameters, that are not described by any _PDF_, are added to the final dataframe later by using vectorized operation in order to increase computational speed.
+The partial list, moreover, can be saved to the final dataframe in multiple steps of a fixed percentage in order to avoid ram duplication problem caused by the function <code>pd.concat</code>.
 
-The random seed during the simulation may be choosen in order to have reproducible results, furthermore at the end of the notebook many plots will be shown for observing the properties of the generated dataframe !
+Initialization of the random seed during the simulation may be choosen manually by turning on the _sel_rs_ flag in order to have reproducible results, at the same time the flag _Check_Plot_ can be turned on and off depending on wether or not the plots describing the generated population have to be computed or not.
 
 ## Additional Material ##
 
