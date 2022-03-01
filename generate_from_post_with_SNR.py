@@ -10,10 +10,11 @@ from tqdm import tqdm
 
 # User parameters ########################################################################
 posterior_filename = "data/o1o2o3_post_background.pkl"
-SNR_min = 6  # or 4?
+SNR_min = 6  # slightly smaller SNR than desired (e.g. 4-6 if target is 8)
 output_folder = f"output/SNR_min_{SNR_min}"
 max_coal_time_yr = 2000
 max_z = 0.5
+verbose = True
 
 # Load and prepare data ##################################################################
 
@@ -110,11 +111,21 @@ for i, row in tqdm(posterior_df.iterrows(), total=len(posterior_df)):
     # TODO: for now, applying SNR cut post-generation
     this_pop = Population(cosmo_params=cosmo_params, redshift_params=redshift_params,
                           mass_params=mass_params, spin_params=spin_params, lazy=False)
-    # Apply SNR cut
-    # TODO..
-    # Save
+    n_pre_cut = len(this_pop)
+    this_pop.add_snr_avg_inclination()  # for later consistency checks, but not needed
+    this_pop.add_snr_max_inclination()
+    # Apply SNR cut -- don't miss detectable events! <-- using max-over-inclination SNR
+    this_pop._data = this_pop._data[this_pop._data["snr_max_inclination"] > SNR_min]
+    if verbose:
+        print(f"{n_pre_cut} events generated before SNR cut.")
+        print(f"{len(this_pop)} kept after SNR_max > {SNR_min} cut.")
+        for c in [4, 6, 8]:
+            print(f"- SNR_avg > {c}:",
+                  len(this_pop._data[this_pop._data["snr_avg_inclination"] > c]))
+    # Save population and parameters,
+    # both LISA and plain formats, since plain one preserves approx SNR columns
     this_pop.save(os.path.join(this_dir, "population"), LISA=True)
-    # TODO: yaml dumper writing garbage from numpy...
+    this_pop.save(os.path.join(this_dir, "population"), LISA=False)
     # Add background
     h2s = generate_strain_SOBBH(fs, row[_h2_1em2_colname], f_reference)
     np.savetxt(os.path.join(this_dir, "background.txt"), np.array([fs, h2s]).T)
