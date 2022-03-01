@@ -84,10 +84,12 @@ f_min, f_max = 3e-5, 0.5  # Hz
 fs = np.logspace(np.log10(f_min), np.log10(f_max), 100)
 
 
-def generate_strain_SOBBH(fs, A, f_reference):
-    """Generates strain-squared SOBBH background for given frequencies."""
-    # TODO...
-    return np.zeros(len(fs))
+def generate_char_strain_sq_unitless_SOBBH(fs, A, f_reference):
+    """
+    Generates characteristic unitless strain-squared for the SOBBH background at the given
+    frequencies.
+    """
+    return A * (fs / f_reference)**(-4 / 3)
 
 
 # Iterate over samples, generate and save ################################################
@@ -127,5 +129,5 @@ for i, row in tqdm(posterior_df.iterrows(), total=len(posterior_df)):
     this_pop.save(os.path.join(this_dir, "population"), LISA=True)
     this_pop.save(os.path.join(this_dir, "population"), LISA=False)
     # Add background
-    h2s = generate_strain_SOBBH(fs, row[_h2_1em2_colname], f_reference)
+    h2s = generate_char_strain_sq_unitless_SOBBH(fs, row[_h2_1em2_colname], f_reference)
     np.savetxt(os.path.join(this_dir, "background.txt"), np.array([fs, h2s]).T)
