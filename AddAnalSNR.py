@@ -102,7 +102,7 @@ print('-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-
 
 print('We can finally estimate the analytical SNR for the events of the catalogue')
 
-BHCat['AnalSNR'] = np.sqrt(16.*((A*((BHCat.ChM*sol_mass*G)**(5./6.))/(BHCat.dist*MPc))**2.)*\
+BHCat['AnalSNR'] = np.sqrt(16.*((A*((BHCat.ChM*sol_mass*G)**(5./6.))/(BHCat.dist*(1. + BHCat.z)*MPc))**2.)*\
     (1./(c*1000)**3.)*(IntFac(BHCat.fend) - IntFac(BHCat.fstart)))
 
 print('-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~~-~-~-~-~-~-~-~-~-~-~-~')
