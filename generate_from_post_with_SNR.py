@@ -23,6 +23,12 @@ try:
 except ImportError:
     raise ImportError("You need `extrapops` to run this script. Contact Jesus Torrado")
 
+try:
+    from sgwb_common import LISA_noise as Ln
+except ImportError:
+    raise ImportError("You need `sgwb_common` to run this script. "
+                      "Contact Jesus Torrado or Mauro Pieroni.")
+
 # Columns for background
 _h2_1em2_colname = "h2_1em2"
 _Omh2_1em2_colname = "Omh2_1em2"
@@ -82,6 +88,7 @@ spin_params = {}
 f_reference = 0.01  # Hz
 f_min, f_max = 3e-5, 0.5  # Hz
 fs = np.logspace(np.log10(f_min), np.log10(f_max), 100)
+resp_AA = Ln.LISA_response_function(fs, channel='AA')
 
 
 def generate_char_strain_sq_unitless_SOBBH(fs, A, f_reference):
@@ -89,7 +96,10 @@ def generate_char_strain_sq_unitless_SOBBH(fs, A, f_reference):
     Generates characteristic unitless strain-squared for the SOBBH background at the given
     frequencies.
     """
-    return A * (fs / f_reference)**(-4 / 3)
+    h2 = A * (fs / f_reference)**(-4 / 3)
+    # TDI units
+    h2 *= resp_AA / 2 / fs
+    return h2
 
 
 # Iterate over samples, generate and save ################################################
@@ -129,5 +139,6 @@ for i, row in tqdm(posterior_df.iterrows(), total=len(posterior_df)):
     this_pop.save(os.path.join(this_dir, "population"), LISA=True)
     this_pop.save(os.path.join(this_dir, "population"), LISA=False)
     # Add background
-    h2s = generate_char_strain_sq_unitless_SOBBH(fs, row[_h2_1em2_colname], f_reference)
-    np.savetxt(os.path.join(this_dir, "background.txt"), np.array([fs, h2s]).T)
+    h2s_TDI_units = generate_char_strain_sq_unitless_SOBBH(
+        fs, row[_h2_1em2_colname], f_reference)
+    np.savetxt(os.path.join(this_dir, "background.txt"), np.array([fs, h2s_TDI_units]).T)
