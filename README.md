@@ -51,12 +51,12 @@ For each of the considered bin, the function <code>Gen_Events_Parameters</code> 
 
 - _Mode FastMc_ : The decimal part of the predicted number of events would be treated in a Monte Carlo approach by generating a random number between 0 and 1, only if the generated number will be smaller or equal than the decimal part the latter would be rounded up to 1. This mode works well when the number of generated events is not high enough to give multiple events on each considered bin (e.g. when using _LIGO_ observation time), in the other case can overestimate the number of generated events;
 
-- _Mode Poisson_ : The predicted number of events would be used as the parameter $\lambda$ describing a Poissonian distribution and the effective number of generated events per bin would be obtained by reverse-sampling the latter. 
+- _Mode Poisson_ : The predicted number of events would be used as the parameter $\lambda$ describing a Poissonian distribution and the effective number of generated events per bin would be obtained by reverse-sampling the latter. This is generally the most reliable approach to generate events. 
 
 All the uniform parameters, that are not described by any _PDF_, are added to the final dataframe later by using vectorized operation in order to increase computational speed.
-The partial list, moreover, can be saved to the final dataframe in multiple steps of a fixed percentage in order to avoid ram duplication problem caused by the function <code>pd.concat</code>.
+The partial list, moreover, can be saved to the final dataframe in multiple steps of a fixed percentage in order to avoid ram duplication problem caused by the function <code>pd.concat</code>. The percentage of dataframe copied on each step can be defined trough the _cp_perc_ variable, and is particularly usefull to set small when computing a _LISA_ observation catalogue.
 
-Initialization of the random seed during the simulation may be choosen manually by turning on the _sel_rs_ flag in order to have reproducible results, at the same time the flag _Check_Plot_ can be turned on and off depending on wether or not the plots describing the generated population have to be computed or not.
+To conclude, for what concerns the randomization procedure, the random seed can be inizialized to a choosen value during the simulation manually by turning on the _sel_rs_ flag in order to have reproducible results, at the same time the flag _Check_Plot_ can be turned on and off depending on wether or not the plots describing the generated population have to be computed or not.
 
 ## Additional Material ##
 
