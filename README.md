@@ -12,10 +12,15 @@ The code can also be used to generate subdominant channels of the main populatio
 ## Description of the code ##
 
 In the paper by [LIGO and Virgo Scientific Collaboration [1]](https://arxiv.org/abs/2111.03634)[[2]](https://arxiv.org/abs/2010.14533)[[3]](https://arxiv.org/abs/1811.12940), the inference was done adopting several different distributions for the masses.
-In the [notebook](https://github.com/KuZa91/Generating-a-BH-Merging-Catalogue/blob/master/BHCatalogV6.0.ipynb), we implemented both the _Power law + Peak model_ taken by [[1]](https://arxiv.org/abs/2111.03634), and the _Model B_ distribution taken from [[3]](https://arxiv.org/abs/1811.12940).
-Furthermore, in the latest version _V 6.0_ of the notebook, in order to describe _PBH_ perturbations, we implemented a standard _Gaussian_ mass function as well as a _Log-Normal Probability Distribution Function(PDF)_ taken from [B. Carr et al.](https://journals.aps.org/prd/abstract/10.1103/PhysRevD.96.023514). 
-For what concerns _spin amplitudes_ and _spin tilts angles_, we implemented the _Default Spin model_ taken from the paper [[1]](https://arxiv.org/abs/2111.03634), the parameters for the latters were described in the paper [[2]](https://arxiv.org/abs/2010.14533).
-The merging rate is taken in agreement with the latest results of [[1]](https://arxiv.org/abs/2111.03634), in particular, it was implemented both a redshift evolving merging rate and a constant one over the volume.
+In this notebook [notebook](https://github.com/KuZa91/Generating-a-BH-Merging-Catalogue/blob/master/BHCatalogV6.0.ipynb), we implemented both the _Power law + Peak model_ taken by [[1]](https://arxiv.org/abs/2111.03634), and the _Model B_ distribution taken from [[3]](https://arxiv.org/abs/1811.12940).
+Furthermore, in the latest version _V 6.0_ of the notebook, in order to describe _PBH_ perturbations we implemented a standard _Gaussian_ mass function as well as a _Log-Normal Probability Distribution Function(PDF)_ taken from [B. Carr et al.](https://journals.aps.org/prd/abstract/10.1103/PhysRevD.96.023514). 
+For what concerns _spin amplitudes_ and _spin tilts angles_, we only implemented the _Default Spin model_ taken from the paper [[1]](https://arxiv.org/abs/2111.03634) as there is no evidence in literature for other relevant models, the parameters for the latters were described in the paper [[2]](https://arxiv.org/abs/2010.14533).
+The merger rates implemented in the paper are as follows: 
+- A constant merger rate as proposed in [LIGO and Virgo Scientific Collaboration [2]](https://arxiv.org/abs/2010.14533);
+- A redshift evolving merger rate which follows a power law dependency in redshift as in [[1]](https://arxiv.org/abs/2111.03634);
+- A redshift evolving merger rate in the form of [P. Madau](https://arxiv.org/abs/1403.0007);
+- A broken power law for _PBH_ population as presented by [V. Atal](https://arxiv.org/abs/2201.12218);
+- A merger rate in function of the universal time as proposed in [S.S. Bavera](2109.05836).
 In order to generate perturbation catalogues at a given z, the mode _R Spike_ was implemented which will generate events only at a particular bin of z given a certain width and intensity for the perturbation.
 Most of the other parameters were taken uniform in their prior, as no real information on their distribution could still be inferred from the observational data.
 To conclude, equation **11 a)** of the paper by [S. Marsat and J. Baker](https://arxiv.org/abs/1806.10734) was used both to esteem the _initial frequency_ and the time in which the merging event gets to a maximum frequency that may be assumed as the maximum sensitivity of a given detector.
