@@ -28,7 +28,7 @@ Most of the other parameters were taken uniform in their prior, as no real infor
 To conclude, when considering a population for the [LISA](https://www.elisascience.org/) detector equation **11 a)** of the paper by [S. Marsat and J. Baker](https://arxiv.org/abs/1806.10734) can be used both to calculate the _initial frequency_, and the time in which the event gets to a choosen maximum value  of frequency that may be set as the maximum sensitivity of a given detector, in order to obtain a first approximation for the _In-Band Time_.
 The dataset would be generated in the Detector frame for all variables but the masses, which are kept in the source frame in order to directly compare with the expected mass distribution functions, they can however be converted in the detector frame by running the script [ToDetFrame.py](https://github.com/KuZa91/Generating-a-BH-Merging-Catalogue/blob/master/to_DetFrameV3.py). Analogously, the _Signal to noise Ratio_ (_SNR_) of the generated events can be computed, both for the [aLIGO](https://dcc.ligo.org/public/0149/T1800042/004/T1800042-v4.pdf) and [LISA](https://www.elisascience.org/) detector, using the script [AddAnalSNR.py](https://github.com/KuZa91/Generating-a-BH-Merging-Catalogue/blob/master/AddAnalSNRV2.py) 
 
-## Analysis Details ##
+## Generation Details ##
 
 The main equation that will be integrated during this simulation is equation **8)** of the paper by [LIGO and Virgo Scientific Collaboration](https://arxiv.org/abs/1811.12940), the merger rate and mass _PDF_ can be selected trough the flags at the start of the notebook, whereby the parameters for these function can be set on their function definition.
 The equation, in order to be properly solved require to integrate over the followings parameter :
