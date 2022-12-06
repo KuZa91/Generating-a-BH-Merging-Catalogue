@@ -30,8 +30,8 @@ The dataset would be generated in the Detector frame for all variables but the m
 
 ## Analysis Details ##
 
-The main equation that will be integrated during this simulation is equation **8)** of the paper by [LIGO and Virgo Scientific Collaboration](https://arxiv.org/abs/1811.12940), where all the parameters for the distribution functions were taken from the previously cited papers and are reported together with their uncertainties in <code>In[11]-In[27]</code>
-This equation, however, in order to be properly solved require to span over some parameters, which are :
+The main equation that will be integrated during this simulation is equation **8)** of the paper by [LIGO and Virgo Scientific Collaboration](https://arxiv.org/abs/1811.12940), the merger rate and mass _PDF_ can be selected trough the flags at the start of the notebook, whereby the parameters for these function can be set on their function definition.
+The equation, in order to be properly solved require to integrate over the followings parameter :
 
 - The _redshift_, which may be considered as an analougous of the distance from the detector ;
 
@@ -41,17 +41,17 @@ This equation, however, in order to be properly solved require to span over some
 
 - The _spin tilts angles_ of the 2 events;
 
-To increase the computational speed, the function <code>Bin_and_Gen</code> was parallelized over the first cycle, resulting in a performance increase up to the setted _mass precision_ for a computer with said number of cores.
-Furthermore, the simmetry of the _spin amplitudes_ and _spin tilts angles_ distributions were used to implement an _Inverse cumulative distribution function(ICDF)_ for the latters and generate them a posteriori without having to span over the phase space.
-For each of the considered bin, the function <code>Gen_Events_Parameters</code> generated a number of events equal to the number predicted in the considered bin, this number can be interpreted in several different ways by activating the corrispective flag for the mode. We have the following modes available for the run :
+To increase the computational speed, the function <code>Bin_and_Gen</code> was parallelized over the first cycle, resulting in a performance increase up to the choosen _mass precision_ for a computer with a number of cores greater than this value.
+Furthermore, the simmetry of the _spin amplitudes_ and _spin tilts angles_ distributions were used to implement an _Inverse cumulative distribution function(ICDF)_ for the latters and generate them a posteriori without having to span over their phase space.
+For each of the considered bin, the function <code>Gen_Events_Parameters</code> generates estimate the number of events in the considered bin, this number can be interpreted in several different ways by activating the corrispective flag for the mode. We have the following modes available for the run :
 
-- _Default mode_ : the number of events generated would be just the predicted number of events rounded up (e.g 18.7 ~ 19, 0.4 ~0.);
+- _Default mode_ : the number of events generated would be just the predicted number of events in each binrounded up (e.g 18.7 ~ 19, 0.4 ~0.), this mode can be used to understand the properties dominant events that will appear in the catalogue;
 
 - _Mode Ex_ : allows the generation of exotic events with non-zero probability by summing a random number between 0 and 0.5 before rounding up as in _Default mode_;
 
-- _Mode FastMc_ : The decimal part of the predicted number of events would be treated in a Monte Carlo approach by generating a random number between 0 and 1, only if the generated number will be smaller or equal than the decimal part the latter would be rounded up to 1;
+- _Mode FastMc_ : The decimal part of the predicted number of events would be treated in a Monte Carlo approach by generating a random number between 0 and 1, only if the generated number will be smaller or equal than the decimal part the latter would be rounded up to 1. This mode works well when the number of generated events is not high enough to give multiple events on each considered bin (e.g. when using _LIGO_ observation time), in the other case can overestimate the number of generated events;
 
-- _Mode Poisson_ : The predicted number of events would be used as the parameter describing a Poissonian distribution and the effective number of generated events per bin would be obtained by reverse-sampling the latter. 
+- _Mode Poisson_ : The predicted number of events would be used as the parameter $\lambda$ describing a Poissonian distribution and the effective number of generated events per bin would be obtained by reverse-sampling the latter. 
 
 All the uniform parameters, that are not described by any _PDF_, are added to the final dataframe later by using vectorized operation in order to increase computational speed.
 The partial list, moreover, can be saved to the final dataframe in multiple steps of a fixed percentage in order to avoid ram duplication problem caused by the function <code>pd.concat</code>.
