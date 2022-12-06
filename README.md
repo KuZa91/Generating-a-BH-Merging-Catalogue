@@ -24,7 +24,7 @@ The merger rates implemented in the paper are as follows:
 - A merger rate in function of the universal time as proposed in [S.S. Bavera](2109.05836).
 
 In order to generate perturbation catalogues at a given z, the mode _R Spike_ was implemented which will generate events only at a particular bin of z given a certain width and intensity for the perturbation.
-Most of the other parameters were taken uniform in their prior, as no real information on their distribution could still be inferred from the observational data.
+Most of the other parameters were taken uniform in their prior, as no real information on their distribution could still be inferred from the observed data.
 To conclude, when considering a population for the [LISA](https://www.elisascience.org/) detector equation **11 a)** of the paper by [S. Marsat and J. Baker](https://arxiv.org/abs/1806.10734) can be used both to calculate the _initial frequency_, and the time in which the event gets to a choosen maximum value  of frequency that may be set as the maximum sensitivity of a given detector, in order to obtain a first approximation for the _In-Band Time_.
 The dataset would be generated in the Detector frame for all variables but the masses, which are kept in the source frame in order to directly compare with the expected mass distribution functions, they can however be converted in the detector frame by running the [script](https://github.com/KuZa91/Generating-a-BH-Merging-Catalogue/blob/master/to_DetFrameV3.py).
 
