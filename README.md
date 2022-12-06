@@ -9,7 +9,7 @@ In order to do so, I'll use equation **1)** and **2)** of the paper of [A. Sesan
 The previous articles infer the properties of the parameters distribution for the _SOBBHm_ population detected by the _LIGO and VIRGO Collaboration_, in order to predict a reliable description of the _Black Holes_ (_BHS_).
 The code can also be used to generate subdominant channels of the main population described by the _LIGO-Virgo-Kagra_ (_LVK_) collaboration, as the _Primordial Black Holes_ (_PBHs_) population described in [B. Carr](https://journals.aps.org/prd/abstract/10.1103/PhysRevD.96.023514), [V. De Luca](https://arxiv.org/abs/2106.13769).
 
-##Description of the code##
+## Description of the code ##
 
 In the paper by [LIGO and Virgo Scientific Collaboration [1]](https://arxiv.org/abs/2111.03634)[[2]](https://arxiv.org/abs/2010.14533)[[3]](https://arxiv.org/abs/1811.12940), the inference was done adopting several different distributions for the masses.
 In the [notebook](https://github.com/KuZa91/Generating-a-BH-Merging-Catalogue/blob/master/BHCatalogV6.0.ipynb), we implemented both the _Power law + Peak model_ taken by [[1]](https://arxiv.org/abs/2111.03634), and the _Model B_ distribution taken from [[3]](https://arxiv.org/abs/1811.12940).
