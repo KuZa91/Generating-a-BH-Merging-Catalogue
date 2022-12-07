@@ -12,15 +12,12 @@ from scipy import interpolate
 from scipy.interpolate import interp1d
 plt.style.use('seaborn-whitegrid') 
 
-#Read LIGO sens curve with#
-#S_h = pd.read_csv('ALigoSens.txt', sep = "  ", engine = 'python')
-#
 
 # Parameter defintion
 
 df_nm = sys.argv[1]     # first parameter to be passed on calling, name of the .h5 catalogue file
 df_key = sys.argv[2]    # second parameter to be passed on calling, key of the .h5 catalogue file
-detector = sys argv[3]  # third parameter to be passed on calling, detector on which to estimate the ideal SNR (e.g. LISA, aLIGO)
+detector = sys.argv[3]  # third parameter to be passed on calling, detector on which to estimate the ideal SNR (e.g. LISA, aLIGO)
 SNR_cut = sys.argv[4]   # fourth parameter to be passed on calling, snr cut on events, cut all events from the catalogue with SNR smaller than x
 
 c = 299792.46 # speed of light in Km/sec
