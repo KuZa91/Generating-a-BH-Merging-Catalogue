@@ -1,4 +1,4 @@
-Frequency  aLIGO_sens
+Frequency  aLIGO_Sh
 5.  1.9997e-20
 5.0115  1.9462e-20
 5.0231  1.8942e-20

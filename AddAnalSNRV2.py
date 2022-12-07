@@ -78,7 +78,7 @@ if detector == 'LISA':
 
 if detector == 'aLIGO':
     aLIGO_Sens = pd.read_csv('ALigoSens.txt', sep = "  ", engine = 'python')
-    S_h = interp1d(aLIGO_Sens.Frequency, aLIGO_sens.aLIGO_Sh, fill_value="extrapolate")
+    S_h = interp1d(aLIGO_Sens.Frequency, aLIGO_Sens.aLIGO_Sh, fill_value="extrapolate")
 
     def GetFisco(m1,m2):
         M = m1 + m2
@@ -101,10 +101,10 @@ if detector == 'LISA':
     BHCat['CoalTime'] = BHCat['CoalTime']/(1. + BHCat.Redshift)
     BHCat.InitialFrequency[BHCat['InitialFrequency'] < f_min] = f_min
     BHCat['LISA_fend'] = (1./(1. + BHCat.Redshift))*GetInitialFrequency(BHCat.Mass1, BHCat.Mass2, (BHCat.CoalTime - T_obs)*year)
-    BHCat.fend[BHCat['LISA_fend'] > f_max] = f_max
+    BHCat.LISA_fend[BHCat['LISA_fend'] > f_max] = f_max
 if detector == 'aLIGO':
     BHCat['aLIGO_fend'] = GetFisco(BHCat.Mass1, BHCat.Mass2)
-    BHCat.fend[BHCat['aLIGO_fend'] > f_max] = f_max
+    BHCat.aLIGO_fend[BHCat['aLIGO_fend'] > f_max] = f_max
 
 
 print('-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~~-~-~-~-~-~-~-~-~-~-~-~')
@@ -168,7 +168,11 @@ print('Cutting the Dataframe to one with only events having analytical SNR bigge
 
 if detector == 'LISA':
 
-    CUTBHCat = BHCat[BHCat['AnalSNR_LISA'] >= float(SNR_cut)]
+    	CUTBHCat = BHCat[BHCat['AnalSNR_LISA'] >= float(SNR_cut)]
+    
+if detector == 'aLIGO':
+
+    	CUTBHCat = BHCat[BHCat['AnalSNR_aLIGO'] >= float(SNR_cut)]
 
 print('Let me save the dataframe and we are done !')
 
@@ -177,4 +181,5 @@ if detector == 'LISA':
     	CUTBHCat.to_hdf('LISAAnSNRB'+SNR_cut+df_nm, df_key, mode='w')
 
 if detector == 'aLIGO':
+
 	CUTBHCat.to_hdf('aLIGOAnSNRB'+SNR_cut+df_nm, df_key, mode='w')
