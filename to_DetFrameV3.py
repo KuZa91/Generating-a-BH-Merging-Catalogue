@@ -1,4 +1,3 @@
-# coding: utf-8
 import numpy as np 
 import scipy.special as sc 
 import statistics as st 
@@ -7,8 +6,6 @@ import pandas as pd
 import sys
 #from LISAhdf5 import LISAhdf5,ParsUnits 
 #%matplotlib inline 
-import matplotlib.pyplot as plt 
-plt.style.use('seaborn-whitegrid') 
 
 
 c = 299792.46 # speed of light in Km/sec
@@ -32,7 +29,7 @@ max_tc = 10000
 #    return res/year  
   
 
-df_key = 'SOBBH'
+df_key = sys.argv[2]
 df_nm = sys.argv[1]
 
 print('We start by loading the dataframe...')
